@@ -1,0 +1,12 @@
+c:\users\matheus.cristoni\documents\visual studio 2017\Projects\AAI_FTC\AAI_FTC\bin\Debug\AAI_FTC.exe.config
+c:\users\matheus.cristoni\documents\visual studio 2017\Projects\AAI_FTC\AAI_FTC\bin\Debug\AAI_FTC.exe
+c:\users\matheus.cristoni\documents\visual studio 2017\Projects\AAI_FTC\AAI_FTC\bin\Debug\AAI_FTC.pdb
+c:\users\matheus.cristoni\documents\visual studio 2017\Projects\AAI_FTC\AAI_FTC\obj\Debug\AAI_FTC.csprojResolveAssemblyReference.cache
+c:\users\matheus.cristoni\documents\visual studio 2017\Projects\AAI_FTC\AAI_FTC\obj\Debug\AAI_FTC.exe
+c:\users\matheus.cristoni\documents\visual studio 2017\Projects\AAI_FTC\AAI_FTC\obj\Debug\AAI_FTC.pdb
+D:\Área de Trabalho\AAI_FTC\AAI_FTC\bin\Debug\AAI_FTC.exe.config
+D:\Área de Trabalho\AAI_FTC\AAI_FTC\bin\Debug\AAI_FTC.exe
+D:\Área de Trabalho\AAI_FTC\AAI_FTC\bin\Debug\AAI_FTC.pdb
+D:\Área de Trabalho\AAI_FTC\AAI_FTC\obj\Debug\AAI_FTC.csprojResolveAssemblyReference.cache
+D:\Área de Trabalho\AAI_FTC\AAI_FTC\obj\Debug\AAI_FTC.exe
+D:\Área de Trabalho\AAI_FTC\AAI_FTC\obj\Debug\AAI_FTC.pdb
