@@ -10,3 +10,9 @@ D:\Área de Trabalho\AAI_FTC\AAI_FTC\bin\Debug\AAI_FTC.pdb
 D:\Área de Trabalho\AAI_FTC\AAI_FTC\obj\Debug\AAI_FTC.csprojResolveAssemblyReference.cache
 D:\Área de Trabalho\AAI_FTC\AAI_FTC\obj\Debug\AAI_FTC.exe
 D:\Área de Trabalho\AAI_FTC\AAI_FTC\obj\Debug\AAI_FTC.pdb
+E:\GitHub\AAI_FTC\AAI_FTC\bin\Debug\AAI_FTC.exe.config
+E:\GitHub\AAI_FTC\AAI_FTC\bin\Debug\AAI_FTC.exe
+E:\GitHub\AAI_FTC\AAI_FTC\bin\Debug\AAI_FTC.pdb
+E:\GitHub\AAI_FTC\AAI_FTC\obj\Debug\AAI_FTC.csprojResolveAssemblyReference.cache
+E:\GitHub\AAI_FTC\AAI_FTC\obj\Debug\AAI_FTC.exe
+E:\GitHub\AAI_FTC\AAI_FTC\obj\Debug\AAI_FTC.pdb

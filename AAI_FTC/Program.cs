@@ -25,7 +25,7 @@ namespace AAI_FTC
             //EstadoInicial = 1
             StrLida = Console.ReadLine();
             //Pega a posição seguinte ao último espaço presente na string
-            int.TryParse(StrLida.Substring(StrLida.LastIndexOf(' ')+1), out int EstadoInicial);
+            int.TryParse(StrLida.Substring(StrLida.LastIndexOf(' ') + 1), out int EstadoInicial);
             aux = EstadoInicial;
 
             //Pegar estado final
@@ -35,52 +35,95 @@ namespace AAI_FTC
             //Pega a posição seguinte ao último espaço presente na string
             int.TryParse(StrLida.Substring(StrLida.LastIndexOf(' ') + 1), out int EstadoFinal);
 
-            //Cria uma lista para saber quais s~ao os estados
-            List<string> Estados = new List<string>();
-
+            //Cria uma lista para saber quais são os estados
+            List<List<string>> Estados = new List<List<string>>();
+            List<string> entradas = new List<string>();
             do
             {
                 StrLida = Console.ReadLine();
-                //Inicio nova entrada
-                //if (aux % (Alfabeto.Length - 1) == EstadoInicial)
-                //{
-                    //Estrutura:
-                    //EstadoAtual Entrada Saida
-                    string[] str = new string[3];
-                    str[0] = StrLida[0].ToString();
-                    str[1] = StrLida[2].ToString();
+
+                //Estrutura:
+                //EstadoAtual -> pos 0
+                //Entrada     -> pos 1 
+                //Saida       -> pos 2+
+                string[] str = new string[3];
+                str[0] = StrLida[0].ToString();
+                str[1] = StrLida[2].ToString();
+                try
+                {
+                    //Juntar tudo da saída em um string só. Ex: '1 2' vai virar 12
+                    str[2] = (StrLida.Substring(4)).Replace(" ", "");
+                }
+                catch
+                {
+                    //Se no AFN, para uma certa entrada, não houver saída, setar o 3 elemento para ""
+                    str[2] = "";
+                }
+
+                //Lista de estados
+                //  Lista de cada entrada para este estado
+                //      Saida para cada entrada de cada estado
+                if (aux % (Alfabeto.Length - 1) == EstadoInicial)
+                {
+                    //Inicio nova entrada
+                    entradas = new List<string>();
+                    entradas.Add(str[2]);
+                    Estados.Add(entradas);
+                }
+                else
+                {
+                    entradas.Add(str[2]);
+                }
+                aux++;
+            } while (aux <= (EstadoFinal * (Alfabeto.Length - 1)));
+
+            List<string[]> saida = new List<string[]>();
+            List<string> estadosAFD = new List<string>();
+            List<string> estadosAFDAux = new List<string>();
+            int EstadoAtual = EstadoInicial;
+            estadosAFD.Add(EstadoInicial.ToString());
+            estadosAFDAux.Add(EstadoInicial.ToString());
+            int posEstadoafd = 0;
+            do
+            {
+                for (int i = 0; i < (Alfabeto.Length - 1); i++)
+                {
                     try
                     {
-                        str[2] = (StrLida.Substring(4)).Replace(" ", "");
-                    }
-                    catch
-                    {
-                        str[2] = "";
-                    }
+                        //todo: Continuar a partir daqui
+                        //Tentar usar algo tipo hashmap para indexar strings
+                        string[] str2 = new string[3];
+                        //Estado
+                        str2[0] = EstadoAtual.ToString();
+                        //Entrada
+                        str2[1] = Alfabeto[i + 1]; //i+1 pois a primeira posição seria ABC:, por exemplo 
+                        //Saida
+                        str2[2] = Estados[EstadoAtual - 1][int.Parse(str2[1])];
 
-                    if (!Estados.Contains(str[2]) && !string.IsNullOrWhiteSpace(str[2]))
-                    {
-                        Estados.Add(str[2]);
+                        if (!estadosAFD.Contains(str2[2]) && !string.IsNullOrWhiteSpace(str2[2]))
+                        {
+                            estadosAFD.Add(str2[2]);
+                        }
+                        saida.Add(str2);
+                        estadosAFDAux.RemoveAt(0);
                     }
-                //}
-                aux++;
-            } while (aux <= (EstadoFinal * (Alfabeto.Length-1)));
+                    catch (Exception)
+                    {
+                        break;
+                    }
+                }
+                EstadoAtual++;
+            } while (estadosAFDAux.Count > 0);
 
-            Console.WriteLine(EstadoInicial);
-            Console.WriteLine(EstadoFinal);
+
+
+            Console.WriteLine("\n\n\n===== AFD =====");
+            Console.WriteLine(string.Join(" ", Alfabeto));
+            Console.WriteLine("i: " + EstadoInicial);
+            Console.WriteLine("f: " + EstadoFinal);
+
+            Console.Write("Pressione ENTER pra sair");
             Console.ReadLine();
-
-            //estado entrada saida
-            //1 0 1
-            //1 1 1 2
-            //2 0 3
-            //2 1
-            //3 0
-            //3 1 4
-            //4 0 5
-            //4 1
-            //5 0
-            //5 1
         }
     }
 }
