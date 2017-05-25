@@ -8,10 +8,12 @@ namespace AAI_FTC
 {
     class Program
     {
-        private static string StrLida = Console.ReadLine();
+        private static string StrLida;
         private static int aux;
         public static void Main(string[] args)
         {
+            Console.WriteLine("===== Entrada (AFN) =====");
+            StrLida = Console.ReadLine();
             //Pega entrada do Alfabeto e coloca cada item nu ma posição dum vetor
             //ex: Entrada => ABC: 1 2 3
             //Alfabeto[0] = ABC:
@@ -83,45 +85,118 @@ namespace AAI_FTC
             int EstadoAtual = EstadoInicial;
             estadosAFD.Add(EstadoInicial.ToString());
             estadosAFDAux.Add(EstadoInicial.ToString());
-            int posEstadoafd = 0;
+            string[] auxVet;
             do
             {
-                for (int i = 0; i < (Alfabeto.Length - 1); i++)
+                auxVet = new string[(Alfabeto.Length - 1)];
+                for (int k = 0; k < estadosAFD[EstadoAtual - EstadoInicial].Length; k++)
                 {
-                    try
+                    for(int i = 0; i < (Alfabeto.Length - 1); i++)
                     {
-                        //todo: Continuar a partir daqui
-                        //Tentar usar algo tipo hashmap para indexar strings
-                        string[] str2 = new string[3];
-                        //Estado
-                        str2[0] = EstadoAtual.ToString();
-                        //Entrada
-                        str2[1] = Alfabeto[i + 1]; //i+1 pois a primeira posição seria ABC:, por exemplo 
-                        //Saida
-                        str2[2] = Estados[EstadoAtual - 1][int.Parse(str2[1])];
-
-                        if (!estadosAFD.Contains(str2[2]) && !string.IsNullOrWhiteSpace(str2[2]))
-                        {
-                            estadosAFD.Add(str2[2]);
-                        }
-                        saida.Add(str2);
-                        estadosAFDAux.RemoveAt(0);
+                        auxVet[i] += Estados[(int.Parse((estadosAFDAux[0][k]).ToString()) - 1)][i];
                     }
-                    catch (Exception)
+                }
+                for (int j = 0; j < auxVet.Length; j++)
+                {
+                    saida.Add(new string[] { EstadoAtual.ToString(), j.ToString(), auxVet[j] });
+                    if (!estadosAFD.Contains(auxVet[j]) && !string.IsNullOrWhiteSpace(auxVet[j]))
                     {
-                        break;
+                        estadosAFD.Add(auxVet[j]);
+                        estadosAFDAux.Add(auxVet[j]);
                     }
                 }
                 EstadoAtual++;
+                estadosAFDAux.RemoveAt(0);
             } while (estadosAFDAux.Count > 0);
 
+            //do
+            //{
+            //    auxVet = new string[(Alfabeto.Length - 1)];
+            //    for (int i = 0; i < (Alfabeto.Length - 1); i++)
+            //    {
+            //        try
+            //        {
+            //            //todo: Continuar a partir daqui
+            //            //Tentar usar algo tipo hashmap para indexar strings
+            //            string[] str2 = new string[3];
+            //            //Estado
+            //            str2[0] = EstadoAtual.ToString();
+            //            //Entrada
+            //            str2[1] = Alfabeto[i + 1]; //i+1 pois a primeira posição seria ABC:, por exemplo 
+            //            //Saida
+            //            if (estadosAFD[EstadoAtual - EstadoInicial].Length > 1)
+            //            {
+            //                precisaAdd = true;
+            //                //Percorrer dentro da entrada
+            //                for (int k = 0; k < estadosAFD[EstadoAtual - EstadoInicial].Length; k++)
+            //                {
+            //                    //if (k <= i)
+            //                    //{
+            //                      //auxVet[k % (Alfabeto.Length - 1)] += Estados[(int.Parse((estadosAFDAux[0][i]).ToString()) - 1)][k % (Alfabeto.Length - 1)];
+
+            //                    int pos = int.Parse((estadosAFD[EstadoAtual - EstadoInicial][i]).ToString());
+            //                    var test = Estados[pos - 1][k % (Alfabeto.Length - 1)];
+            //                    auxVet[k % (Alfabeto.Length - 1)] += test;
+            //                    //}
+            //                    //else
+            //                    //{
+            //                    //  auxVet[k % (Alfabeto.Length - 1)] += Estados[(int.Parse((estadosAFDAux[0][k]).ToString()) - 1)][k % (Alfabeto.Length - 1)];
+            //                    //}
+            //                    //str2[2] = "";
+            //                    //int m;
+            //                    //for (m= 0; m < (Alfabeto.Length - 1); m++)
+            //                    //{
+            //                    //    str2[2] += Estados[(int.Parse((estadosAFDAux[0][m]).ToString()) - 1)][k];
+            //                    //}
+            //                    //saida.Add(str2);
+            //                    //if (!estadosAFD.Contains(str2[2]) && !string.IsNullOrWhiteSpace(str2[2]))
+            //                    //{
+            //                    //    estadosAFD.Add(str2[2]);
+            //                    //    estadosAFDAux.Add(str2[2]);
+            //                    //}
+            //                    //break;
+            //                }
+            //            }
+            //            else
+            //            {
+            //                str2[2] = Estados[EstadoAtual - 1][int.Parse(str2[1])];
+            //                saida.Add(str2);
+            //                precisaAdd = false;
+            //                if (!estadosAFD.Contains(str2[2]) && !string.IsNullOrWhiteSpace(str2[2]))
+            //                {
+            //                    estadosAFD.Add(str2[2]);
+            //                    estadosAFDAux.Add(str2[2]);
+            //                }
+            //            }
+            //        }
+            //        catch (Exception e)
+            //        {
+            //            Console.WriteLine(e.Message);
+            //        }
+            //    }
+            //    for (int m = 0; m < auxVet.Length; m++)
+            //    {
+            //        if (precisaAdd)
+            //        {
+            //            saida.Add(new string[] { EstadoAtual.ToString(), m.ToString(), auxVet[m] });
+            //        }
+                    
+            //    }
+            //    EstadoAtual++;
+
+            //    estadosAFDAux.RemoveAt(0);
+            //} while (estadosAFDAux.Count > 0);
 
 
-            Console.WriteLine("\n\n\n===== AFD =====");
+
+            Console.WriteLine("\n\n===== Saída (AFD) =====");
             Console.WriteLine(string.Join(" ", Alfabeto));
             Console.WriteLine("i: " + EstadoInicial);
             Console.WriteLine("f: " + EstadoFinal);
-
+            for (int i = 0; i < saida.Count; i++)
+            {
+                Console.WriteLine(saida[i][0] + " " + saida[i][1] + " " + (estadosAFD.IndexOf(saida[i][2]) + 1).ToString());
+            }
             Console.Write("Pressione ENTER pra sair");
             Console.ReadLine();
         }
