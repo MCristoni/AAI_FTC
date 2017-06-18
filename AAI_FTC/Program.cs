@@ -27,7 +27,8 @@ namespace AAI_FTC
             //EstadoInicial = 1
             StrLida = Console.ReadLine();
             //Pega a posição seguinte ao último espaço presente na string
-            int.TryParse(StrLida.Substring(StrLida.LastIndexOf(' ') + 1), out int EstadoInicial);
+            int EstadoInicial;
+            int.TryParse(StrLida.Substring(StrLida.LastIndexOf(' ') + 1), out EstadoInicial);
             aux = EstadoInicial;
 
             //Pegar estado final
@@ -35,7 +36,8 @@ namespace AAI_FTC
             //EstadoFinal = 5
             StrLida = Console.ReadLine();
             //Pega a posição seguinte ao último espaço presente na string
-            int.TryParse(StrLida.Substring(StrLida.LastIndexOf(' ') + 1), out int EstadoFinal);
+            int EstadoFinal;
+            int.TryParse(StrLida.Substring(StrLida.LastIndexOf(' ') + 1), out EstadoFinal);
 
             //Cria uma lista para saber quais são os estados
             List<List<string>> Estados = new List<List<string>>();
